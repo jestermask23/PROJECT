@@ -1,0 +1,232 @@
+<Window x:Class="PredictiveMarketing.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PredictiveMarketing.App"
+        xmlns:sp="clr-namespace:ScottPlot.WPF;assembly=ScottPlot.WPF"
+        mc:Ignorable="d"
+        Title="Predictive Modeling of Marketing Effectiveness"
+        Height="720" Width="1200"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="Padding" Value="8,4"/>
+        </Style>
+
+        <Style TargetType="CheckBox">
+            <Setter Property="Margin" Value="4"/>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="MinWidth" Value="160"/>
+        </Style>
+
+        <Style TargetType="GroupBox">
+            <Setter Property="Margin" Value="6"/>
+            <Setter Property="Padding" Value="6"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#FFF4F6F9">
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="Auto"/>
+
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>   
+            <ColumnDefinition Width="*"/>     
+            <ColumnDefinition Width="360"/>   
+        </Grid.ColumnDefinitions>
+
+
+        <DockPanel Grid.Row="0" Grid.ColumnSpan="3"
+                   Background="#FF1E2A38" Height="44">
+            <TextBlock Text="Predictive Modeling of Marketing Effectiveness"
+                       Foreground="White"
+                       VerticalAlignment="Center"
+                       Margin="12,0,0,0"
+                       FontSize="16"
+                       FontWeight="SemiBold"/>
+
+            <StackPanel Orientation="Horizontal"
+                        DockPanel.Dock="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,0,12,0">
+                <Button x:Name="BtnLoadData"
+                        Content="Load Data..."
+                        Width="110"
+                        Click="BtnLoadData_Click"
+                        Background="#FF2E89FF"
+                        Foreground="White"
+                        FontWeight="SemiBold"/>
+            </StackPanel>
+        </DockPanel>
+
+
+        <Border Grid.Row="1" Grid.Column="0" Margin="8"
+                Background="White" CornerRadius="4"
+                BorderBrush="#FFCED4DD" BorderThickness="1">
+            <StackPanel Margin="8">
+                <TextBlock Text="Configuration"
+                           FontWeight="Bold"
+                           FontSize="14"
+                           Margin="0,0,0,8"/>
+
+                <GroupBox Header="Data Preprocessing">
+                    <StackPanel>
+                        <CheckBox x:Name="ChkNormalize"
+                                  Content="Apply normalization"
+                                  IsChecked="True"/>
+                        <CheckBox x:Name="ChkHandleMissing"
+                                  Content="Handle missing values"
+                                  IsChecked="True"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Header="Model Selection">
+                    <StackPanel>
+                        <TextBlock Text="Model type:"
+                                   Margin="4,0,4,2"/>
+                        <ComboBox x:Name="CmbModelType"
+                                  SelectedIndex="0">
+                            <ComboBoxItem Content="Linear Regression"/>
+                            <ComboBoxItem Content="Random Forest"/>
+                        </ComboBox>
+                    </StackPanel>
+                </GroupBox>
+
+
+                <GroupBox Header="Run">
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="BtnTrain"
+                                Content="Train Model"
+                                Width="110"
+                                IsEnabled="False"/>
+                        <Button x:Name="BtnEvaluate"
+                                Content="Evaluate"
+                                Width="90"
+                                Margin="4,0,0,0"
+                                IsEnabled="False"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </Border>
+
+
+        <Border Grid.Row="1" Grid.Column="1" Margin="0,8"
+                Background="White" CornerRadius="4"
+                BorderBrush="#FFCED4DD" BorderThickness="1">
+            <DockPanel Margin="8">
+                <TextBlock DockPanel.Dock="Top"
+                           Text="Loaded Data (preview)"
+                           FontWeight="Bold"
+                           FontSize="14"
+                           Margin="0,0,0,4"/>
+
+                <DataGrid x:Name="DataPreviewGrid"
+                          AutoGenerateColumns="True"
+                          IsReadOnly="True"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          Margin="0,4,0,0"
+                          HeadersVisibility="Column"
+                          GridLinesVisibility="All"
+                          AlternatingRowBackground="#FFF4F8FF"/>
+            </DockPanel>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="2" Margin="8"
+                Background="White" CornerRadius="4"
+                BorderBrush="#FFCED4DD" BorderThickness="1">
+            <Grid Margin="8">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>  
+                    <RowDefinition Height="*"/>   
+                </Grid.RowDefinitions>
+
+
+                <GroupBox Header="Performance Chart"
+                          Grid.Row="0" Margin="0,0,0,6">
+                    <Grid>
+
+                        <sp:WpfPlot x:Name="PerformancePlot"
+                                    Margin="0"/>
+                        <TextBlock Text="(Chart placeholder - add plots in code)"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="#66000000"
+                                   FontStyle="Italic"/>
+                    </Grid>
+                </GroupBox>
+
+
+                <GroupBox Header="Model Metrics"
+                          Grid.Row="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0"
+                                   Text="RMSE:"
+                                   FontWeight="SemiBold"
+                                   Margin="4"/>
+                        <TextBlock x:Name="TxtRmse"
+                                   Grid.Row="0" Grid.Column="1"
+                                   Text="–"
+                                   Margin="4"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0"
+                                   Text="MAE:"
+                                   FontWeight="SemiBold"
+                                   Margin="4"/>
+                        <TextBlock x:Name="TxtMae"
+                                   Grid.Row="1" Grid.Column="1"
+                                   Text="–"
+                                   Margin="4"/>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0"
+                                   Text="R²:"
+                                   FontWeight="SemiBold"
+                                   Margin="4"/>
+                        <TextBlock x:Name="TxtR2"
+                                   Grid.Row="2" Grid.Column="1"
+                                   Text="–"
+                                   Margin="4"/>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </Border>
+
+
+        <StatusBar Grid.Row="2" Grid.ColumnSpan="3"
+                   Background="#FFE4E8EE">
+            <StatusBarItem>
+                <TextBlock x:Name="TxtStatus"
+                           Text="Ready"
+                           Margin="4,0"/>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+                <TextBlock x:Name="TxtFileInfo"
+                           Text="No file loaded"
+                           Margin="4,0"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
