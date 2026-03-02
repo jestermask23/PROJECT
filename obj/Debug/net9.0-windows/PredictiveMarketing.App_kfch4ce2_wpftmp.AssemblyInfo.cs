@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PredictiveMarketing.App")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3ee703d05f902b81066e15290a11e6c01427146b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+55ac88a813e1f44841c2289dcac9991de5351620")]
 [assembly: System.Reflection.AssemblyProductAttribute("PredictiveMarketing.App")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PredictiveMarketing.App")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

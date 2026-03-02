@@ -11,7 +11,8 @@ namespace PredictiveMarketing.App.Services
     {
         public Task<DataTable> LoadDataAsync(string path, int? takeRows = null)
         {
-            return Task.CompletedTask
+            var table = new DataTable("Data");
+            return Task.FromResult(table);
 
         }
     }
