@@ -208,3 +208,4 @@ C:\Users\qr-ru\Desktop\PredictiveMarketing.App\obj\Debug\net9.0-windows\refint\P
 C:\Users\qr-ru\Desktop\PredictiveMarketing.App\obj\Debug\net9.0-windows\PredictiveMarketing.App.pdb
 C:\Users\qr-ru\Desktop\PredictiveMarketing.App\obj\Debug\net9.0-windows\PredictiveMarketing.App.genruntimeconfig.cache
 C:\Users\qr-ru\Desktop\PredictiveMarketing.App\obj\Debug\net9.0-windows\ref\PredictiveMarketing.App.dll
+C:\Users\qr-ru\Desktop\PredictiveMarketing.App\obj\Debug\net9.0-windows\PredictiveMarketing.App.sourcelink.json
